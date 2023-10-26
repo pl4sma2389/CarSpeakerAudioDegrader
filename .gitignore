@@ -1,0 +1,5 @@
+*.wav
+*.mp3
+/build
+*.vst3
+desktop.ini
