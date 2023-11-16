@@ -60,7 +60,6 @@ def assemble_gui(config=None):
                             '''dpg.bind_item_font(footer, small_font)'''
 
 
-
 def set_gui_colors(config=None):  # Set up theme and colors
     with dpg.theme() as global_theme:
         with dpg.theme_component(dpg.mvAll):
