@@ -1,7 +1,10 @@
-from pedalboard import Pedalboard, load_plugin, Mix, Gain
-from pedalboard.io import AudioFile
-import os
+from pedalboard import Pedalboard, load_plugin, Mix, Gain, Reverb, HighpassFilter, MP3Compressor, LowpassFilter
+from pedalboard.io import AudioStream
+from gui.core import run_gui
+from cfg.core import load_config
 
+
+'''
 print("Loading VSTs...")
 # Load required VSTs
 plg_binaural_bass = load_plugin("./VST3s/Sennheiser AMBEO Orbit.vst3")
@@ -50,42 +53,22 @@ setattr(plg_supermassive, "mode", "Gemini")
 
 print("Finished setting parameters.\nStarting processing...")
 
-'''# Read in a whole audio file:
-with AudioFile('or2ed5.mp3', 'r') as f:
-    audio = f.read(f.frames)
-    samplerate = f.samplerate'''
-
-
-'''print("Binaural:", plg_binaural_bass.parameters.keys(),
-      "\nHaas:", plg_haas.parameters.keys(),
-      "\nFilter:", plg_filter_bass.parameters.keys())'''
-
-
 # Make a Pedalboard object, containing multiple plugins:
 bass = Pedalboard([Gain(gain_db=-8), plg_binaural_bass, plg_filter_bass])
 nonbass = Pedalboard([Gain(gain_db=-8), plg_binaural_nonbass, plg_filter_nonbass])
 
 rejoin = Pedalboard([Mix([nonbass, bass])])
 finalboard = Pedalboard([rejoin, plg_haas, plg_supermassive])
+'''
 
-'''# Run the audio through this pedalboard!
-effected = finalboard(audio, samplerate)
+'''print("Inputs:", AudioStream.input_device_names, "\nOutputs:", AudioStream.output_device_names)
 
-# Write the audio back as a wav file:
-with AudioFile('processed-output.wav', 'w', samplerate, effected.shape[0]) as f:
-    f.write(effected)'''
+with AudioStream(
+    input_device_name="CABLE Output (VB-Audio Virtual",
+    output_device_name="Primary Sound Driver"
+) as stream:
+    filters = Pedalboard([LowpassFilter(cutoff_frequency_hz=50), Gain(gain_db=5)])
+    stream.plugins.append(filters)
+    input("Press enter to stop streaming...")'''
 
-for file in os.listdir("./ToProcess"):
-    if file.endswith(".txt"):
-        continue
-    print("Now processing:", file)
-    with AudioFile('./ToProcess/'+file, 'r') as f:
-        audio = f.read(f.frames)
-        samplerate = f.samplerate
-
-    effected = finalboard(audio, samplerate)
-    print("Now writing:", file)
-    with AudioFile('./Processed/'+file, 'w', samplerate, effected.shape[0]) as f:
-        f.write(effected)
-print("Finished processing. Enjoy your crappy car audio!")
-os.system("pause")
+# run_gui(config=load_config())

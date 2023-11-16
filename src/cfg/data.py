@@ -1,0 +1,13 @@
+config_default = {
+    "BACK_COLOR": "#232323",
+    "BACK_COLOR_LIGHT": "#454545",
+    "ACCENT_COLOR": "#00aaff",
+    "ACCENT_COLOR_DARK": "#005580",
+    "UI_CORNER_RADIUS": "3",
+    "UI_SCROLLBAR_SIZE": "16",
+    "UI_FONT_SIZE_REGULAR": "18",
+    "UI_FONT_SIZE_SMALL": "12",
+    "UI_FONT_SIZE_LARGE": "24",
+    "UI_FONT_SIZE_HEADER": "30",
+    "UI_FONT_SIZE_TITLE": "40"
+}

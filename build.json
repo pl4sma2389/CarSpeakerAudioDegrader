@@ -70,18 +70,6 @@
    "value": false
   },
   {
-   "optionDest": "datas",
-   "value": "S:/Assorted Project Files/Assetto Corsa Car Audio Simulator/VST3s;VST3s/"
-  },
-  {
-   "optionDest": "datas",
-   "value": "S:/Assorted Project Files/Assetto Corsa Car Audio Simulator/Processed;Processed/"
-  },
-  {
-   "optionDest": "datas",
-   "value": "S:/Assorted Project Files/Assetto Corsa Car Audio Simulator/ToProcess;ToProcess/"
-  },
-  {
    "optionDest": "hiddenimports",
    "value": "numpy"
   }

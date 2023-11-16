@@ -1,5 +1,8 @@
 *.wav
 *.mp3
 /build
+/VST3s
 *.vst3
 desktop.ini
+/venv/
+/Graphics/
