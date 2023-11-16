@@ -1,7 +1,7 @@
 data_about_body = "Developed by ohyeah2389 at Slip Angle Modding and Development\n\nThe following software, libraries, and assets are used in this program:\n\n" \
-                     "Python 3.10: https://www.python.org/\n" \
-                     "\tDear PyGui 1.6.2: https://github.com/hoffstadt/DearPyGui\n" \
-                     "\twebcolors 1.3: https://github.com/ubernostrum/webcolors\n\n" \
+                     "Python 3.12: https://www.python.org/\n" \
+                     "\tDear PyGui 1.10.1: https://github.com/hoffstadt/DearPyGui\n" \
+                     "\twebcolors 1.13: https://github.com/ubernostrum/webcolors\n\n" \
                      "Roboto Mono: https://fonts.google.com/specimen/Roboto+Mono"
 
 data_buildinfo = "Build Info goes here"  # TODO: Put build and/or version info here
