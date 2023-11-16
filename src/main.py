@@ -71,4 +71,4 @@ with AudioStream(
     stream.plugins.append(filters)
     input("Press enter to stop streaming...")'''
 
-# run_gui(config=load_config())
+run_gui(config=load_config())

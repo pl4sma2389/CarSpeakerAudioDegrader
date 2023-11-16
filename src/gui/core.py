@@ -39,6 +39,9 @@ def assemble_gui(config=None):
         dpg.bind_font(header_font)
         dpg.bind_font(title_font)'''  # TODO: Crashes DPG, prevents font loading
 
+    set_gui_colors(config)
+    set_gui_style(config)
+
     with dpg.window(tag="windowMain"):
         with dpg.tab_bar():
             for pagedata in gui.data.pagedata:
@@ -56,8 +59,6 @@ def assemble_gui(config=None):
                             footer = dpg.add_text(pagedata.get('footer'))
                             '''dpg.bind_item_font(footer, small_font)'''
 
-    set_gui_colors(config)
-    set_gui_style(config)
 
 
 def set_gui_colors(config=None):  # Set up theme and colors
