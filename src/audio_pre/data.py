@@ -1,8 +1,10 @@
+import pedalboard as pb
+
 effect_library = [
     {
         "ident": "gain_reduce",
         "builtin": True,
-        "location": "Gain",
+        "location": pb.Gain,
         "params": {
             "gain_db": -8
         }

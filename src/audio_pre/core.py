@@ -1,4 +1,5 @@
 from pedalboard import Pedalboard, load_plugin, Mix, Gain, Reverb, HighpassFilter, MP3Compressor, LowpassFilter
+import pedalboard as pb
 from pedalboard.io import AudioStream
 
 def init_pb_old():
@@ -61,15 +62,15 @@ def init_pb_old():
 def init_pb(library=None, chain=None):
     assembled_pedalboard = []
     if library and chain:
-        for effect in library:
-            print("\nEffect Name:", library[library.index(effect)]["ident"])
-            print("Effect is Built-In:", library[library.index(effect)]["builtin"])
-            print("Effect Location:", library[library.index(effect)]["location"])
-            print("Effect Parameters:", library[library.index(effect)]["params"])
-        for item in chain:
-            if type(item) is str:
-                print("Item:", library[library[0].items])
-                # assembled_pedalboard.append(effect)
+        for effect_name in chain:
+            if type(effect_name) is str:
+                for effect_slot in library:
+                    if effect_slot["ident"] == effect_name:
+                        print("Effect Location:", effect_slot["location"])
+                        if type(effect_slot["location"]) is str:
+                            assembled_pedalboard.append(pb.load_plugin(effect_slot["location"]))
+                        else:
+                            assembled_pedalboard.append(effect_slot["location"]())
     elif chain:
         print("Effect library is empty!")
     elif library:
