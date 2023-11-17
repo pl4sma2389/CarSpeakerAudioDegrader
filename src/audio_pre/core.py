@@ -2,6 +2,7 @@ from pedalboard import Pedalboard, load_plugin, Mix, Gain, Reverb, HighpassFilte
 import pedalboard as pb
 from pedalboard.io import AudioStream
 
+
 def init_pb_old():
     print("Loading VSTs...")  # Load required VSTs
     plg_binaural_bass = load_plugin("./VST3s/Sennheiser AMBEO Orbit.vst3")
@@ -59,18 +60,28 @@ def init_pb_old():
     ])
 
 
-def init_pb(library=None, chain=None):
+def assemble_pb(library=None, chain=None):
     assembled_pedalboard = []
     if library and chain:
         for effect_name in chain:
             if type(effect_name) is str:
                 for effect_slot in library:
                     if effect_slot["ident"] == effect_name:
-                        print("Effect Location:", effect_slot["location"])
+                        print("Assembling plugin", effect_slot["location"])
                         if type(effect_slot["location"]) is str:
-                            assembled_pedalboard.append(pb.load_plugin(effect_slot["location"]))
+                            plugin = pb.load_plugin(effect_slot["location"])
+                            for setting in effect_slot["params"].items():
+                                print("Setting", setting, "on plugin", plugin)
+                                setattr(plugin, setting[0], setting[1])
+                            assembled_pedalboard.append(plugin)
+                            print("Assembled plugin", effect_slot["location"])
                         else:
-                            assembled_pedalboard.append(effect_slot["location"]())
+                            builtin_key, builtin_value = None, None
+                            for key, value in effect_slot["params"].items():
+                                builtin_key, builtin_value = key, value
+                            exec(f"assembled_pedalboard.append(effect_slot['location']({builtin_key}={builtin_value}))")
+                            print("Assembled plugin", effect_slot["location"], "with built-in key", builtin_key, "and value", builtin_value)
+
     elif chain:
         print("Effect library is empty!")
     elif library:
@@ -81,4 +92,3 @@ def init_pb(library=None, chain=None):
     print(assembled_pedalboard)
 
     return Pedalboard(assembled_pedalboard)
-
