@@ -9,5 +9,7 @@ config_default = {
     "UI_FONT_SIZE_SMALL": "12",
     "UI_FONT_SIZE_LARGE": "24",
     "UI_FONT_SIZE_HEADER": "30",
-    "UI_FONT_SIZE_TITLE": "40"
+    "UI_FONT_SIZE_TITLE": "40",
+    "WINDOW_SIZE_X": "600",
+    "WINDOW_SIZE_Y": "400"
 }

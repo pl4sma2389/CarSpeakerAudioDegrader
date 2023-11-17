@@ -1,1 +1,1 @@
-__all__ = ['core', 'data.py']
+__all__ = ['core', 'data']

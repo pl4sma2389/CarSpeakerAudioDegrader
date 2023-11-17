@@ -10,7 +10,7 @@ def run_gui(show_demo=False, config=None):
         exit()
 
     dpg.create_context()
-    dpg.create_viewport(title='Car Speaker Audio Degrader', width=800, height=600)
+    dpg.create_viewport(title='Car Speaker Audio Degrader', width=int(config["WINDOW_SIZE_X"]), height=int(config["WINDOW_SIZE_Y"]))
 
     assemble_gui(config)
 
@@ -39,7 +39,7 @@ def assemble_gui(config=None):
         dpg.bind_font(header_font)
         dpg.bind_font(title_font)'''  # TODO: Crashes DPG, prevents font loading
 
-    set_gui_colors(config)
+    set_gui_colors(config)  # TODO: This doesn't actually set the colors
     set_gui_style(config)
 
     with dpg.window(tag="windowMain"):
