@@ -18,7 +18,7 @@ effect_library = [
             "elevation": -15,
             "reflection_enable": False,
             "clarity": 75,
-            "width": 100
+            "width": 60
         }
     },
     {
@@ -66,23 +66,50 @@ effect_library = [
         "builtin": False,
         "location": "./VST3s/ValhallaSupermassive.vst3",
         "params": {
+            "mix": 70,
+            "delay_ms": '15\u202fms',
+            "delaywarp": 100,
+            "feedback": 30,
+            "density": 50,
             "width": 100,
-            "lowcut": 10,
+            "lowcut": "10.0Hz",
+            "highcut": 10000,
+            "modrate": "0.01Hz",
+            "moddepth": 0,
             "mode": "Gemini",
         }
     },
 ]
 
-effect_chain_complex = [
+effect_chain = [
     [
-        ["gain_reduce", "binaural_nonbass", "filter_nonbass"],
-        ["gain_reduce", "binaural_bass", "filter_bass"]
+        "mix",
+        [
+            "gain_reduce",
+            "binaural_nonbass",
+            "filter_nonbass"
+        ],
+        [
+            "gain_reduce",
+            "binaural_bass",
+            "filter_bass"
+        ]
     ],
     "haas",
     "supermassive"
 ]
 
-effect_chain = [
+effect_chain_2 = [
+    [
+        "gain_reduce",
+        "binaural_bass",
+        "filter_bass"
+    ],
+    "haas",
+    "supermassive"
+]
+
+effect_chain_1 = [
     "gain_reduce",
     "haas",
     "supermassive"

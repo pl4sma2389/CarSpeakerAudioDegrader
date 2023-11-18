@@ -1,8 +1,5 @@
 from gui.core import run_gui
 from cfg.core import load_config
-from audio_pre.core import assemble_pb
-from audio_pre.data import effect_library, effect_chain
-
 
 '''print("Inputs:", AudioStream.input_device_names, "\nOutputs:", AudioStream.output_device_names)
 
@@ -14,5 +11,4 @@ with AudioStream(
     stream.plugins.append(filters)
     input("Press enter to stop streaming...")'''
 
-assemble_pb(library=effect_library, chain=effect_chain)
-#run_gui(config=load_config())
+run_gui(config=load_config())

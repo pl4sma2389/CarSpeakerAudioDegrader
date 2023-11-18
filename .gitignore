@@ -1,8 +1,12 @@
 *.wav
 *.mp3
+*.flac
 /build
 /VST3s
 *.vst3
 desktop.ini
 /venv/
 /Graphics/
+*.log
+*.vpreset
+*.zip

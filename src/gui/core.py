@@ -10,7 +10,9 @@ def run_gui(show_demo=False, config=None):
         exit()
 
     dpg.create_context()
+
     dpg.create_viewport(title='Car Speaker Audio Degrader', width=int(config["WINDOW_SIZE_X"]), height=int(config["WINDOW_SIZE_Y"]))
+    dpg.set_viewport_resizable(False)
 
     assemble_gui(config)
 
@@ -51,9 +53,11 @@ def assemble_gui(config=None):
                             header = dpg.add_text(pagedata.get('header'))
                             '''dpg.bind_item_font(header, header_font)'''
 
-                        if pagedata.get('body'):
+                        if pagedata.get('body') and pagedata.get('body') is str:
                             body = dpg.add_text(pagedata.get('body'))
                             '''dpg.bind_item_font(body, regular_font)'''
+                        elif pagedata.get('body') and callable(pagedata.get('body')): # TODO: This should check for code, not allowing anything else
+                            pagedata.get('body')()
 
                         if pagedata.get('footer'):
                             footer = dpg.add_text(pagedata.get('footer'))
